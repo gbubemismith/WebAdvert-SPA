@@ -1,0 +1,37 @@
+<form [formGroup]="signUpForm">
+    <h2 class="text-center text-primary">Sign Up</h2>
+    <hr>
+
+    <div class="form-group">
+        <input [ngClass]="{'is-invalid': signUpForm.get('email').errors && signUpForm.get('email').touched}" class="form-control"
+          placeholder="Email Address" formControlName="email">
+        <div class="invalid-feedback" *ngIf="signUpForm.get('email').touched && signUpForm.get('email').hasError('required')">Kindly provide a valid email</div>
+    </div>
+
+    <div class="form-group">
+        <input type="password" class="form-control"
+        [ngClass]="{'is-invalid': signUpForm.get('password').errors && signUpForm.get('password').touched }" 
+         placeholder="Password" formControlName="password">
+
+         <div class="invalid-feedback" *ngIf="signUpForm.get('password').hasError('required') && signUpForm.get('password').touched ">Password is required</div>
+
+         <div class="invalid-feedback" *ngIf="signUpForm.get('password').hasError('minlength') && signUpForm.get('password').touched ">Password must be at least 6 characters</div>
+
+    </div>
+
+    <div class="form-group">
+        <input type="password" class="form-control" 
+        [ngClass]="{'is-invalid': signUpForm.get('confirmPassword').errors && signUpForm.get('confirmPassword').touched || signUpForm.get('confirmPassword').touched && signUpForm.hasError('mismatch') }"
+        placeholder="Confirm Password" formControlName="confirmPassword">
+
+        <div class="invalid-feedback" *ngIf="signUpForm.get('confirmPassword').hasError('required') && signUpForm.get('confirmPassword').touched ">Password is required</div>
+
+        <div class="invalid-feedback" *ngIf="signUpForm.hasError('mismatch') && signUpForm.get('confirmPassword').touched ">Passwords must match</div>
+    </div>
+
+    <div class="from-group text-center">
+        <button class="btn btn-success mr-2" [disabled]="!signUpForm.valid" type="submit">Register</button>
+        <button class="btn btn-light" type="button" >Cancel</button>
+
+    </div>
+</form>
