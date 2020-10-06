@@ -1,5 +1,5 @@
 <form [formGroup]="signUpForm">
-    <h2 class="text-center text-primary">Sign Up</h2>
+    <h4 class="text-center text-primary">Sign Up</h4>
     <hr>
 
     <div class="form-group">
@@ -31,7 +31,7 @@
 
     <div class="from-group text-center">
         <button class="btn btn-success mr-2" [disabled]="!signUpForm.valid" type="submit">Register</button>
-        <button class="btn btn-light" type="button" >Cancel</button>
+        <button class="btn btn-light" type="button" (click)="cancel()">Cancel</button>
 
     </div>
 </form>

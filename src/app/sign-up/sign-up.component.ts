@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
+  @Output() cancelSignUp = new EventEmitter();
   signUpForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
@@ -27,6 +28,11 @@ export class SignUpComponent implements OnInit {
 
   passwordMatchValidator(g: FormGroup) {
     return g.get('password').value === g.get('confirmPassword').value ? null : {'mismatch': true};
+  }
+
+
+  cancel() {
+    this.cancelSignUp.emit(false);
   }
 
 }
